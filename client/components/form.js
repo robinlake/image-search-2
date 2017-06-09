@@ -1,32 +1,38 @@
 import React from 'react';
+import {Form, FormControl, Button} from 'react-bootstrap'
 
-export class Form extends React.Component {
+export class FormInstance extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.state = {
+      search: 'empty search'
+    }
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  changeSearch() {
+    this.setState({search: this.state.newSearch})
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+      <div>
+      <Form inline={true}>
+        <FormControl
+          className="searchTerm"
+          placeholder='new search'
+          onChange={event => this.setState({newSearch: event.target.value})}
+          />
+        <FormControl
+          className="resultsPerPage"
+          placeholder='results per page'
+          />
+        <Button onClick = {() => this.changeSearch()} >
+          submit
+        </Button>
+      </Form>
+
+      <h3> Searches for {this.state.search}</h3>
+      </div>
+    )
   }
 }
