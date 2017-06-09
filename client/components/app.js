@@ -1,7 +1,18 @@
 import React from 'react'
+import {Header} from './header'
+
 
 export default class App extends React.Component {
   render () {
-    return <h1>hello</h1>
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-xs-10 col-xs-offset-4">
+                    <Header />
+                </div>
+            </div>
+        </div>
+    )
+     
   }
 }
