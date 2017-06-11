@@ -25,9 +25,6 @@ app.post('/formResults', function(req,res){
   res.send('you have submitted a form')
 })
 
-app.get('/formResults', function(req,res){
-  res.send('you have submitted a form')
-})
 // Error handler //
 app.use(function (err, req, res, next){
   res.status(err.status || 500)
