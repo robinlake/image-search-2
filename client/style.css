@@ -20,3 +20,10 @@ body {
     width: 100px;
     display: inline-block;
 }
+
+.results {
+    height: 300px;
+    width: 450px;
+    background-color: #ccc;
+    z-index: 1;
+}
