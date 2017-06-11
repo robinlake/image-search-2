@@ -26,4 +26,5 @@ body {
     width: 450px;
     background-color: #ccc;
     z-index: 1;
+    margin: 0 auto;
 }

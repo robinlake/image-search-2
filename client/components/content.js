@@ -33,7 +33,6 @@ export class Content extends React.Component {
     if(this.state.output == 'Results'){
       return (
         <div className="contentBox">
-          {this.state.output}
           <FormInstance />
           <NavbarInstance showRecent = {this.showRecent} showResults = {this.showResults} />
           <Results />
@@ -42,7 +41,6 @@ export class Content extends React.Component {
     } else {
       return (
         <div className="contentBox">
-          {this.state.output}
           <FormInstance />
           <NavbarInstance showRecent = {this.showRecent} showResults = {this.showResults} />
           <Recent />

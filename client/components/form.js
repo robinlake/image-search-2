@@ -5,18 +5,22 @@ export class FormInstance extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      search: 'empty search'
+      search: 'empty search',
+      numberOfResults: 0
     }
   }
 
   changeSearch() {
-    this.setState({search: this.state.newSearch})
+    this.setState({
+      search: this.state.newSearch,
+      numberOfResults: this.state.newNumberOfResults
+    })
   }
 
   render() {
     return (
       <div>
-      <Form inline={true}>
+      <Form inline={true} action = "../../formResults" method = "POST">
         <FormControl
           className="searchTerm"
           placeholder='new search'
@@ -25,13 +29,14 @@ export class FormInstance extends React.Component {
         <FormControl
           className="resultsPerPage"
           placeholder='results per page'
+          onChange={event => this.setState({newNumberOfResults: event.target.value})}
           />
-        <Button onClick = {() => this.changeSearch()} >
+        <Button type= "submit" value="Submit" onClick = {() => this.changeSearch()} >
           submit
         </Button>
       </Form>
 
-      <h3> Searches for {this.state.search}</h3>
+      <h3> Showing {this.state.numberOfResults} results for {this.state.search}</h3>
       </div>
     )
   }

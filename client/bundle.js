@@ -17761,7 +17761,6 @@ var Content = exports.Content = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           { className: 'contentBox' },
-          this.state.output,
           _react2.default.createElement(_form.FormInstance, null),
           _react2.default.createElement(_nav.NavbarInstance, { showRecent: this.showRecent, showResults: this.showResults }),
           _react2.default.createElement(_results.Results, null)
@@ -17770,7 +17769,6 @@ var Content = exports.Content = function (_React$Component) {
         return _react2.default.createElement(
           'div',
           { className: 'contentBox' },
-          this.state.output,
           _react2.default.createElement(_form.FormInstance, null),
           _react2.default.createElement(_nav.NavbarInstance, { showRecent: this.showRecent, showResults: this.showResults }),
           _react2.default.createElement(_recent.Recent, null)
@@ -17925,7 +17923,8 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (FormInstance.__proto__ || Object.getPrototypeOf(FormInstance)).call(this, props));
 
     _this.state = {
-      search: 'empty search'
+      search: 'empty search',
+      numberOfResults: 0
     };
     return _this;
   }
@@ -17933,7 +17932,10 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
   _createClass(FormInstance, [{
     key: 'changeSearch',
     value: function changeSearch() {
-      this.setState({ search: this.state.newSearch });
+      this.setState({
+        search: this.state.newSearch,
+        numberOfResults: this.state.newNumberOfResults
+      });
     }
   }, {
     key: 'render',
@@ -17945,7 +17947,7 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
         null,
         _react2.default.createElement(
           _reactBootstrap.Form,
-          { inline: true },
+          { inline: true, action: '../../formResults', method: 'POST' },
           _react2.default.createElement(_reactBootstrap.FormControl, {
             className: 'searchTerm',
             placeholder: 'new search',
@@ -17955,11 +17957,14 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
           }),
           _react2.default.createElement(_reactBootstrap.FormControl, {
             className: 'resultsPerPage',
-            placeholder: 'results per page'
+            placeholder: 'results per page',
+            onChange: function onChange(event) {
+              return _this2.setState({ newNumberOfResults: event.target.value });
+            }
           }),
           _react2.default.createElement(
             _reactBootstrap.Button,
-            { onClick: function onClick() {
+            { type: 'submit', value: 'Submit', onClick: function onClick() {
                 return _this2.changeSearch();
               } },
             'submit'
@@ -17968,7 +17973,9 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
         _react2.default.createElement(
           'h3',
           null,
-          ' Searches for ',
+          ' Showing ',
+          this.state.numberOfResults,
+          ' results for ',
           this.state.search
         )
       );
@@ -18044,19 +18051,6 @@ var NavbarInstance = exports.NavbarInstance = function (_React$Component) {
               'a',
               { href: '#', onClick: this.props.showRecent },
               'Recent Searches'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          _reactBootstrap.Navbar.Header,
-          null,
-          _react2.default.createElement(
-            _reactBootstrap.Navbar.Brand,
-            null,
-            _react2.default.createElement(
-              'a',
-              { href: '#', onClick: this.props.showResults },
-              'will it blend?'
             )
           )
         )
