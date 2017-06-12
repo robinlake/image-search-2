@@ -3,7 +3,18 @@ var express = require('express')
 var path = require('path')
 var bodyParser = require('body-parser')
 
+// var React = require('react')
+// var ReactDOM = require('react-dom')
+// var ReactDOMServer = require('react-dom/server')
+// var Component = require('../client/components/recent.js')
+// require('babel-register')({
+//   presets: ['react']
+// })
+
 var app = express()
+
+// Parse form responses //
+app.use(bodyParser.urlencoded({extended: true}))
 
 // Imports //
 var indexRoutes = require('./routes/index')
@@ -21,8 +32,8 @@ app.use(express.static(path.join(__dirname, '../client')))
 app.use('/', indexRoutes)
 
 // Process results of form submission
-app.post('/formResults', function(req,res){
-  res.send('you have submitted a form')
+app.post('/client', function(req,res){
+  res.send('index')
 })
 
 // Error handler //

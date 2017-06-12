@@ -20,15 +20,19 @@ export class FormInstance extends React.Component {
   render() {
     return (
       <div>
-      <Form inline={true} action = "../../formResults" method = "POST">
+      <Form inline={true} action = "/client" method = "POST">
         <FormControl
           className="searchTerm"
           placeholder='new search'
+          type="text"
+          name="search"
           onChange={event => this.setState({newSearch: event.target.value})}
           />
         <FormControl
           className="resultsPerPage"
           placeholder='results per page'
+          type="text"
+          name="resultsPerPage"
           onChange={event => this.setState({newNumberOfResults: event.target.value})}
           />
         <Button type= "submit" value="Submit" onClick = {() => this.changeSearch()} >
