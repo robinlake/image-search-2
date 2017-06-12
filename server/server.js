@@ -1,15 +1,16 @@
+require('babel-register')({
+  presets: ['react']
+})
 var fs = require('fs')
 var express = require('express')
 var path = require('path')
 var bodyParser = require('body-parser')
 
-// var React = require('react')
-// var ReactDOM = require('react-dom')
-// var ReactDOMServer = require('react-dom/server')
-// var Component = require('../client/components/recent.js')
-// require('babel-register')({
-//   presets: ['react']
-// })
+var React = require('react')
+var ReactDOM = require('react-dom')
+var ReactDOMServer = require('react-dom/server')
+var Component = require('../client/components/sample.jsx')
+
 
 var app = express()
 
@@ -30,6 +31,15 @@ app.use(express.static(path.join(__dirname, '../client')))
 
 // Routes //
 app.use('/', indexRoutes)
+
+// isomorphic test routes //
+app.get('/sample', function(request, response){
+  var props = {title: 'Universal React'}
+  var html = ReactDOMServer.renderToString(
+    React.createElement(Component, props)
+  )
+  response.send(html)
+})
 
 // Process results of form submission
 app.post('/client', function(req,res){

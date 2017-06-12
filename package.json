@@ -9,6 +9,8 @@
   "author": "Vahid",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.2",
     "multer": "^1.3.0",
