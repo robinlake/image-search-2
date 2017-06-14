@@ -17925,11 +17925,22 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
     _this.state = {
       search: 'empty search',
       numberOfResults: 0
-    };
+      // this.handleChange = this.handleChange.bind(this)
+    };_this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
 
+  // handleChange(event){
+  //   this.setState({value: event.target.value})
+  // }
+
   _createClass(FormInstance, [{
+    key: 'handleSubmit',
+    value: function handleSubmit(event) {
+      alert(this.state.search);
+      event.preventDefault();
+    }
+  }, {
     key: 'changeSearch',
     value: function changeSearch() {
       this.setState({
@@ -17948,6 +17959,7 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
         _react2.default.createElement(
           _reactBootstrap.Form,
           { inline: true, action: '/client', method: 'POST' },
+          ' ',
           _react2.default.createElement(_reactBootstrap.FormControl, {
             className: 'searchTerm',
             placeholder: 'new search',
