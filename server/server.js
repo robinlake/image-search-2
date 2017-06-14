@@ -8,13 +8,8 @@ var bodyParser = require('body-parser')
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactDOMServer = require('react-dom/server')
-
-
 var app = express()
 
-// Imports //
-var indexRoutes = require('./routes/index')
-var sampleProp = {sample: 'this is some sample text'}
 
 // Set view engine //
 app.set('view engine', 'html')
@@ -27,8 +22,6 @@ app.use(express.static(path.join(__dirname, '../client')))
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-// Routes //
-app.use('/', indexRoutes)
 
 
 // Process results of form submission
