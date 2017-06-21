@@ -17733,7 +17733,9 @@ var Content = exports.Content = function (_React$Component) {
     _this.showResults = _this.showResults.bind(_this);
     _this.showRecent = _this.showRecent.bind(_this);
     _this.state = {
-      output: 'Results'
+      output: 'Results',
+      recent: 'search state woowoo',
+      search: 'this is what was searched'
     };
     return _this;
   }
@@ -17757,13 +17759,14 @@ var Content = exports.Content = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+
       if (this.state.output == 'Results') {
         return _react2.default.createElement(
           'div',
           { className: 'contentBox' },
           _react2.default.createElement(_form.FormInstance, null),
           _react2.default.createElement(_nav.NavbarInstance, { showRecent: this.showRecent, showResults: this.showResults }),
-          _react2.default.createElement(_results.Results, null)
+          _react2.default.createElement(_results.Results, { search: this.state.search })
         );
       } else {
         return _react2.default.createElement(
@@ -17771,7 +17774,7 @@ var Content = exports.Content = function (_React$Component) {
           { className: 'contentBox' },
           _react2.default.createElement(_form.FormInstance, null),
           _react2.default.createElement(_nav.NavbarInstance, { showRecent: this.showRecent, showResults: this.showResults }),
-          _react2.default.createElement(_recent.Recent, null)
+          _react2.default.createElement(_recent.Recent, { recent: this.state.recent })
         );
       }
     }
@@ -17925,14 +17928,10 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
     _this.state = {
       search: 'empty search',
       numberOfResults: 0
-      // this.handleChange = this.handleChange.bind(this)
-    };_this.handleSubmit = _this.handleSubmit.bind(_this);
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
-
-  // handleChange(event){
-  //   this.setState({value: event.target.value})
-  // }
 
   _createClass(FormInstance, [{
     key: 'handleSubmit',
@@ -17958,7 +17957,7 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
         null,
         _react2.default.createElement(
           _reactBootstrap.Form,
-          { inline: true, action: '/client', method: 'POST' },
+          { inline: true, action: '', method: 'POST' },
           ' ',
           _react2.default.createElement(_reactBootstrap.FormControl, {
             className: 'searchTerm',
@@ -17973,7 +17972,7 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
             className: 'resultsPerPage',
             placeholder: 'results per page',
             type: 'text',
-            name: 'resultsPerPage',
+            name: 'numberOfResults',
             onChange: function onChange(event) {
               return _this2.setState({ newNumberOfResults: event.target.value });
             }
@@ -18121,7 +18120,16 @@ var Recent = exports.Recent = function (_React$Component) {
         _react2.default.createElement(
           "h1",
           null,
-          "This is the recent searches component"
+          "These are recent searches"
+        ),
+        _react2.default.createElement(
+          "div",
+          null,
+          _react2.default.createElement(
+            "ul",
+            null,
+            this.props.recent
+          )
         )
       );
     }
@@ -18175,6 +18183,11 @@ var Results = exports.Results = function (_React$Component) {
           "h1",
           null,
           "This is the search results component"
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          this.props.search
         )
       );
     }
@@ -18263,7 +18276,10 @@ var App = function (_React$Component) {
     return App;
 }(_react2.default.Component);
 
-_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app')
+
+// module.exports = 'foobulous'
+);
 
 /***/ }),
 /* 210 */

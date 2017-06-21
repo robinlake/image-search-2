@@ -8,13 +8,9 @@ export class FormInstance extends React.Component {
       search: 'empty search',
       numberOfResults: 0
     }
-    // this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // handleChange(event){
-  //   this.setState({value: event.target.value})
-  // }
 
   handleSubmit(event) {
     alert(this.state.search)
@@ -31,7 +27,7 @@ export class FormInstance extends React.Component {
   render() {
     return (
       <div>
-      <Form inline={true} action = "/client" method = "POST" > {/*onSubmit = {this.handleSubmit}>*/}
+      <Form inline={true} action = "" method = "POST" > {/*onSubmit = {this.handleSubmit}>*/}
         <FormControl
           className="searchTerm"
           placeholder='new search'
@@ -43,7 +39,7 @@ export class FormInstance extends React.Component {
           className="resultsPerPage"
           placeholder='results per page'
           type="text"
-          name="resultsPerPage"
+          name="numberOfResults"
           onChange={event => this.setState({newNumberOfResults: event.target.value})}
           />
         <Button type= "submit" value="Submit" onClick = {() => this.changeSearch()} >

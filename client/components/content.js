@@ -11,7 +11,9 @@ export class Content extends React.Component {
     this.showResults = this.showResults.bind(this)
     this.showRecent = this.showRecent.bind(this)
     this.state = {
-      output: 'Results'
+      output: 'Results',
+      recent: 'search state woowoo',
+      search: 'this is what was searched'
     }
   }
 
@@ -27,15 +29,18 @@ export class Content extends React.Component {
     this.setState({
       output: 'Recent'
     })
+
   }
 
   render() {
+
+
     if(this.state.output == 'Results'){
       return (
         <div className="contentBox">
           <FormInstance />
           <NavbarInstance showRecent = {this.showRecent} showResults = {this.showResults} />
-          <Results />
+          <Results search={this.state.search}/>
         </div>
       )
     } else {
@@ -43,7 +48,7 @@ export class Content extends React.Component {
         <div className="contentBox">
           <FormInstance />
           <NavbarInstance showRecent = {this.showRecent} showResults = {this.showResults} />
-          <Recent />
+          <Recent recent={this.state.recent}/>
         </div>
       )
     }
