@@ -27,7 +27,7 @@ export class FormInstance extends React.Component {
   render() {
     return (
       <div>
-      <Form inline={true} action = "" method = "POST" > {/*onSubmit = {this.handleSubmit}>*/}
+      <Form> {/*onSubmit = {this.handleSubmit}>*/}
         <FormControl
           className="searchTerm"
           placeholder='new search'

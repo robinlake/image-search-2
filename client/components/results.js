@@ -5,7 +5,7 @@ export class Results extends React.Component {
     return (
       <div className="results">
         <h1>This is the search results component</h1>
-        <p>{this.props.search}</p>
+        <p>{this.props.searchResults}</p>
       </div>
     )
   }
