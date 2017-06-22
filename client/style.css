@@ -8,12 +8,13 @@ p ul li{
 }
 
 .contentBox {
-    height: 600px;
-    width: 500px;
+    height: 80vh;
+    width: 90vw;
     background-color: #ffffff;
     -moz-box-shadow:    0px 2px 8px 6px #bbb;
     -webkit-box-shadow: 0px 2px 8px 6px #bbb;
     box-shadow:         0px 2px 8px 6px #bbb;
+    position: relative;
 }
 
 .searchTerm {
@@ -27,8 +28,8 @@ p ul li{
 }
 
 .results {
-    height: 300px;
-    width: 450px;
+    height: 50%;
+    width: 80vw;
     background-color: #eeeeee;
     z-index: 1;
     margin: 0 auto;
@@ -37,4 +38,9 @@ p ul li{
 
 .contentHeader{
     text-align: center;
+}
+
+.headerFooter{
+    width: 60vw;
+    margin: 0 auto;
 }
