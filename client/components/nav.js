@@ -7,6 +7,11 @@ export class NavbarInstance extends React.Component {
       <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
+              <a href="#" onClick = {this.props.showInstructions} >API Instructions</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Navbar.Header>
+            <Navbar.Brand>
               <a href="#" onClick = {this.props.showResults}>Search Results</a>
             </Navbar.Brand>
           </Navbar.Header>

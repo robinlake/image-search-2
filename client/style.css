@@ -1,5 +1,10 @@
 body {
     background-color: #e5e5e5;
+    font-family: bodoni;
+}
+
+p ul li{
+    font-family: futura;
 }
 
 .contentBox {
@@ -24,8 +29,12 @@ body {
 .results {
     height: 300px;
     width: 450px;
-    background-color: #ccc;
+    background-color: #eeeeee;
     z-index: 1;
     margin: 0 auto;
     overflow: scroll;
+}
+
+.contentHeader{
+    text-align: center;
 }

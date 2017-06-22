@@ -4,7 +4,7 @@ export class Footer extends React.Component {
   render() {
     return (
       <div>
-        <h1>This is the footer component</h1>
+        <h1>Programmed with love by <a href="https://robinlake.github.io/">Robin Lake</a></h1>
       </div>
     )
   }

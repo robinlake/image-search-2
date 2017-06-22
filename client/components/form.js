@@ -1,53 +1,51 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import {Form, FormControl, Button} from 'react-bootstrap'
 
 export class FormInstance extends React.Component {
   constructor(props) {
     super(props)
+    this.add = this.add.bind(this)
     this.state = {
       search: 'empty search',
       numberOfResults: 0
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-
-  handleSubmit(event) {
-    alert(this.state.search)
-    event.preventDefault()
+  add(event){
+    if(event.keyCode == 13){
+     (() => {this.props.updateFormResults(this.state.search,parseInt(this.state.numberOfResults))})();
+     (()=> {this.props.showResults()})();
+     console.log(this.props.showResults)
+    }
   }
 
-  changeSearch() {
-    this.setState({
-      search: this.state.newSearch,
-      numberOfResults: this.state.newNumberOfResults
-    })
+  componentDidMount(){
+    window.addEventListener('keyup', this.add)
   }
 
   render() {
     return (
       <div>
-      <Form> {/*onSubmit = {this.handleSubmit}>*/}
-        <FormControl
-          className="searchTerm"
-          placeholder='new search'
-          type="text"
-          name="search"
-          onChange={event => this.setState({newSearch: event.target.value})}
-          />
-        <FormControl
-          className="resultsPerPage"
-          placeholder='results per page'
-          type="text"
-          name="numberOfResults"
-          onChange={event => this.setState({newNumberOfResults: event.target.value})}
-          />
-        <Button type= "submit" value="Submit" onClick = {() => this.changeSearch()} >
-          submit
-        </Button>
-      </Form>
-
-      <h3> Showing {this.state.numberOfResults} results for {this.state.search}</h3>
+        <Form> {/*onSubmit = {this.handleSubmit}>*/}
+          <FormControl
+            className="searchTerm"
+            placeholder='new search'
+            type="text"
+            name="search"
+            onChange={event => this.setState({search: event.target.value})}
+            />
+          <FormControl
+            className="resultsPerPage"
+            placeholder='results per page'
+            type="text"
+            name="numberOfResults"
+            onChange={event => this.setState({numberOfResults: event.target.value})}
+            />
+          <Button id="submitButton" value="Submit" onClick = {() => this.props.updateFormResults(this.state.search,parseInt(this.state.numberOfResults))} >
+            submit
+          </Button>
+        </Form>
       </div>
     )
   }
