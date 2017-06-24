@@ -20,17 +20,22 @@ export class Content extends React.Component {
       recent: 'search state woowoo',
       searchResults: 'this is what was searched',
       searchTerm: null,
-      searchPage: 1
+      searchPage: 1,
+      placeholder: {
+        sample: "hi there",
+        second: "this is the second"
+      }
     }
   }
 
-  showResults () {
+  showResults (e) {
+    //e.preventDefault()
     //Axios request for search results //
     if(this.state.searchTerm != null){
       var searchUrl = 'http://localhost:3002/api/search/' + this.state.searchTerm + '?offset=' + parseInt(this.state.searchPage)
       axios.get(searchUrl)
       .then(res => {
-        console.log(res)
+       // console.log(res)
         this.setState({
         output: 'Results',
         searchResults: res
@@ -73,7 +78,7 @@ export class Content extends React.Component {
       return (
         <div className="contentBox">
           <FormInstance updateFormResults = {this.updateFormResults} showResults = {this.showResults} />
-          <h3 className="contentHeader"> Showing results for {this.state.searchResults} starting on page {this.state.searchPage}</h3>
+          <h3 className="contentHeader"> Showing results for {this.state.searchTerm} starting on page {this.state.searchPage}</h3>
           <NavbarInstance showRecent = {this.showRecent} showResults = {this.showResults} showInstructions = {this.showInstructions} />
           <Results searchResults={this.state.searchResults}/>
         </div>
@@ -84,7 +89,7 @@ export class Content extends React.Component {
           <FormInstance updateFormResults = {this.updateFormResults} showResults = {this.showResults}/>
           <h3 className="contentHeader">Recent Searches</h3>
           <NavbarInstance showRecent = {this.showRecent} showResults = {this.showResults} showInstructions = {this.showInstructions}/>
-          <Recent recent={this.state.recent}/>
+          <Recent recent={this.state.recent} sample={this.state.placeholder}/>
         </div>
       )
     }else if (this.state.output == 'Instructions') {

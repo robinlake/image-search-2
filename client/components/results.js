@@ -2,17 +2,18 @@ import React from 'react'
 
 export class Results extends React.Component {
   render() {
-    if(typeof this.props.searchResults == 'object'){
+    // if(typeof this.props.searchResults == 'object'){
+      if(1 ==1){
       return (
         <div className="results">
           <h1>Showing Search Results</h1>
           <div>
-              {this.props.searchResults.data.map((searchResults) => 
+              {this.props.searchResults.data.map((Results) => 
               <ul>
-              <li>{searchResults.context}</li>
-              <li>{searchResults.snippet}</li>
-              <li>{searchResults.thumbnail}</li>
-              <li>{searchResults.url}</li>
+              <li>{Results.context}</li>
+              {/*<li>{Results.snippet}</li>
+              <li>{Results.thumbnail}</li>
+              <li>{Results.url}</li>*/}
               </ul>)}
           </div>
         </div>

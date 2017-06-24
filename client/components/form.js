@@ -5,14 +5,15 @@ import {Form, FormControl, Button} from 'react-bootstrap'
 export class FormInstance extends React.Component {
   constructor(props) {
     super(props)
-    this.add = this.add.bind(this)
+    this.returnResults = this.returnResults.bind(this)
+    this.returnResultsClick = this.returnResultsClick.bind(this)
     this.state = {
       search: 'empty search',
       numberOfResults: 0
     }
   }
 
-  add(event){
+  returnResults(event){
     if(event.keyCode == 13){
      (() => {this.props.updateFormResults(this.state.search,parseInt(this.state.numberOfResults))})();
      (()=> {this.props.showResults()})();
@@ -20,8 +21,13 @@ export class FormInstance extends React.Component {
     }
   }
 
+  returnResultsClick(){
+    (() => {this.props.updateFormResults(this.state.search,parseInt(this.state.numberOfResults))})();
+    (()=> {this.props.showResults()})();
+  }
+
   componentDidMount(){
-    window.addEventListener('keyup', this.add)
+    window.addEventListener('keyup', this.returnResults)
   }
 
   render() {
@@ -43,6 +49,7 @@ export class FormInstance extends React.Component {
             onChange={event => this.setState({numberOfResults: event.target.value})}
             />
           <Button id="submitButton" value="Submit" onClick = {() => this.props.updateFormResults(this.state.search,parseInt(this.state.numberOfResults))} >
+            
             submit
           </Button>
         </Form>

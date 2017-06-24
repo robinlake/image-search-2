@@ -18423,21 +18423,26 @@ var Content = exports.Content = function (_React$Component) {
       recent: 'search state woowoo',
       searchResults: 'this is what was searched',
       searchTerm: null,
-      searchPage: 1
+      searchPage: 1,
+      placeholder: {
+        sample: "hi there",
+        second: "this is the second"
+      }
     };
     return _this;
   }
 
   _createClass(Content, [{
     key: 'showResults',
-    value: function showResults() {
+    value: function showResults(e) {
       var _this2 = this;
 
+      //e.preventDefault()
       //Axios request for search results //
       if (this.state.searchTerm != null) {
         var searchUrl = 'http://localhost:3002/api/search/' + this.state.searchTerm + '?offset=' + parseInt(this.state.searchPage);
         axios.get(searchUrl).then(function (res) {
-          console.log(res);
+          // console.log(res)
           _this2.setState({
             output: 'Results',
             searchResults: res
@@ -18490,7 +18495,7 @@ var Content = exports.Content = function (_React$Component) {
             'h3',
             { className: 'contentHeader' },
             ' Showing results for ',
-            this.state.searchResults,
+            this.state.searchTerm,
             ' starting on page ',
             this.state.searchPage
           ),
@@ -18508,7 +18513,7 @@ var Content = exports.Content = function (_React$Component) {
             'Recent Searches'
           ),
           _react2.default.createElement(_nav.NavbarInstance, { showRecent: this.showRecent, showResults: this.showResults, showInstructions: this.showInstructions }),
-          _react2.default.createElement(_recent.Recent, { recent: this.state.recent })
+          _react2.default.createElement(_recent.Recent, { recent: this.state.recent, sample: this.state.placeholder })
         );
       } else if (this.state.output == 'Instructions') {
         return _react2.default.createElement(
@@ -18570,11 +18575,11 @@ var Footer = exports.Footer = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         "div",
-        null,
+        { className: "headerFooter" },
         _react2.default.createElement(
           "h1",
           null,
-          "Programmed with love by ",
+          "Coded with love by ",
           _react2.default.createElement(
             "a",
             { href: "https://robinlake.github.io/" },
@@ -18624,15 +18629,15 @@ var Header = exports.Header = function (_React$Component) {
   }
 
   _createClass(Header, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        null,
+        "div",
+        { className: "headerFooter" },
         _react2.default.createElement(
-          'h1',
+          "h1",
           null,
-          'Image Search Metadata Service'
+          "Image Search Metadata Service"
         )
       );
     }
@@ -19528,7 +19533,8 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (FormInstance.__proto__ || Object.getPrototypeOf(FormInstance)).call(this, props));
 
-    _this.add = _this.add.bind(_this);
+    _this.returnResults = _this.returnResults.bind(_this);
+    _this.returnResultsClick = _this.returnResultsClick.bind(_this);
     _this.state = {
       search: 'empty search',
       numberOfResults: 0
@@ -19537,8 +19543,8 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
   }
 
   _createClass(FormInstance, [{
-    key: 'add',
-    value: function add(event) {
+    key: 'returnResults',
+    value: function returnResults(event) {
       var _this2 = this;
 
       if (event.keyCode == 13) {
@@ -19552,14 +19558,26 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
       }
     }
   }, {
+    key: 'returnResultsClick',
+    value: function returnResultsClick() {
+      var _this3 = this;
+
+      (function () {
+        _this3.props.updateFormResults(_this3.state.search, parseInt(_this3.state.numberOfResults));
+      })();
+      (function () {
+        _this3.props.showResults();
+      })();
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      window.addEventListener('keyup', this.add);
+      window.addEventListener('keyup', this.returnResults);
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -19574,7 +19592,7 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
             type: 'text',
             name: 'search',
             onChange: function onChange(event) {
-              return _this3.setState({ search: event.target.value });
+              return _this4.setState({ search: event.target.value });
             }
           }),
           _react2.default.createElement(_reactBootstrap.FormControl, {
@@ -19583,13 +19601,13 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
             type: 'text',
             name: 'numberOfResults',
             onChange: function onChange(event) {
-              return _this3.setState({ numberOfResults: event.target.value });
+              return _this4.setState({ numberOfResults: event.target.value });
             }
           }),
           _react2.default.createElement(
             _reactBootstrap.Button,
             { id: 'submitButton', value: 'Submit', onClick: function onClick() {
-                return _this3.props.updateFormResults(_this3.state.search, parseInt(_this3.state.numberOfResults));
+                return _this4.props.updateFormResults(_this4.state.search, parseInt(_this4.state.numberOfResults));
               } },
             'submit'
           )
@@ -19714,7 +19732,7 @@ var NavbarInstance = exports.NavbarInstance = function (_React$Component) {
             null,
             _react2.default.createElement(
               'a',
-              { href: '#', onClick: this.props.showInstructions },
+              { href: '#', className: 'navItem', onClick: this.props.showInstructions },
               'API Instructions'
             )
           )
@@ -19727,7 +19745,7 @@ var NavbarInstance = exports.NavbarInstance = function (_React$Component) {
             null,
             _react2.default.createElement(
               'a',
-              { href: '#', onClick: this.props.showResults },
+              { href: '#', className: 'navItem', onClick: this.props.showResults },
               'Search Results'
             )
           )
@@ -19740,7 +19758,7 @@ var NavbarInstance = exports.NavbarInstance = function (_React$Component) {
             null,
             _react2.default.createElement(
               'a',
-              { href: '#', onClick: this.props.showRecent },
+              { href: '#', className: 'navItem', onClick: this.props.showRecent },
               'Recent Searches'
             )
           )
@@ -19832,8 +19850,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Results = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -19858,43 +19874,29 @@ var Results = exports.Results = function (_React$Component) {
   }
 
   _createClass(Results, [{
-    key: 'render',
+    key: "render",
     value: function render() {
-      if (_typeof(this.props.searchResults) == 'object') {
+      // if(typeof this.props.searchResults == 'object'){
+      if (true) {
         return _react2.default.createElement(
-          'div',
-          { className: 'results' },
+          "div",
+          { className: "results" },
           _react2.default.createElement(
-            'h1',
+            "h1",
             null,
-            'Showing Search Results'
+            "Showing Search Results"
           ),
           _react2.default.createElement(
-            'div',
+            "div",
             null,
-            this.props.searchResults.data.map(function (searchResults) {
+            this.props.searchResults.data.map(function (Results) {
               return _react2.default.createElement(
-                'ul',
+                "ul",
                 null,
                 _react2.default.createElement(
-                  'li',
+                  "li",
                   null,
-                  searchResults.context
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  searchResults.snippet
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  searchResults.thumbnail
-                ),
-                _react2.default.createElement(
-                  'li',
-                  null,
-                  searchResults.url
+                  Results.context
                 )
               );
             })
@@ -19902,17 +19904,17 @@ var Results = exports.Results = function (_React$Component) {
         );
       } else {
         return _react2.default.createElement(
-          'div',
-          { className: 'results' },
+          "div",
+          { className: "results" },
           _react2.default.createElement(
-            'h1',
+            "h1",
             null,
-            'No Search Performed'
+            "No Search Performed"
           ),
           _react2.default.createElement(
-            'div',
+            "div",
             null,
-            _react2.default.createElement('ul', null)
+            _react2.default.createElement("ul", null)
           )
         );
       }
@@ -19973,7 +19975,7 @@ var App = function (_React$Component) {
                     { className: 'row' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-xs-12 col-lg-8 col-lg-offset-2' },
+                        null,
                         _react2.default.createElement(_header.Header, null)
                     )
                 ),
@@ -19982,7 +19984,7 @@ var App = function (_React$Component) {
                     { className: 'row' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-xs-12 col-lg-8 col-lg-offset-2' },
+                        null,
                         _react2.default.createElement(_content.Content, null)
                     )
                 ),
@@ -19991,7 +19993,7 @@ var App = function (_React$Component) {
                     { className: 'row' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-xs-12 col-lg-8 col-lg-offset-2' },
+                        null,
                         _react2.default.createElement(_footer.Footer, null)
                     )
                 )
