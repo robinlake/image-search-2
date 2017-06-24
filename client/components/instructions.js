@@ -4,9 +4,16 @@ export class Instructions extends React.Component {
   render() {
     return (
       <div className="results">
-        <h1>These are search instructions</h1>
+        <h1>API Instructions</h1>
         <div>
-          <p>this is some text</p>
+          <p>In order to perform a search, add your search term and desired page number to
+            the URL in the manner shown below.
+          </p>
+          <h2>Example:</h2>
+          <p>https://img-data.herokuapp.com/api/search/google?offset=2</p>
+          <p>In order to view recent searches, add /api/recent to the root URL</p>
+          <h2>Example:</h2>
+          <p>https://img-data.herokuapp.com/api/recent</p>
         </div>
       </div>
     )

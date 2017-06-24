@@ -4,7 +4,7 @@ import {Navbar, NavItem, NavDropdown, MenuItem, Nav} from 'react-bootstrap'
 export class NavbarInstance extends React.Component {
   render(){
     return(
-      <Navbar>
+      <Navbar className="navbar">
           <Navbar.Header>
             <Navbar.Brand>
               <a href="#" className="navItem" onClick = {this.props.showInstructions} >API Instructions</a>

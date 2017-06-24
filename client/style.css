@@ -25,6 +25,11 @@ p ul li{
     position: relative;
 }
 
+.form{
+    margin: 70 auto;
+    width: 100%;
+}
+
 .searchTerm {
     width: 200px;
     display: inline-block;
@@ -35,8 +40,12 @@ p ul li{
     display: inline-block;
 }
 
+.navbar{
+    margin: 0 auto;
+}
+
 .results {
-    height: 60%;
+    height: 70%;
     width: 100%;
     background-color: #eeeeee;
     z-index: 1;
@@ -60,11 +69,11 @@ p ul li{
     }
 
     .results {
-    height: 50%;
+    height: 62%;
     width: 100%;
     }
     .headerFooter{
-    width: 100%;
+    width: 80vw;
     margin: 0 auto;
     }
 }
@@ -76,7 +85,12 @@ p ul li{
     }
 
     .results {
-    height: 50%;
+    height: 62%;
     width: 100%;
+    }
+
+    .headerFooter{
+    width: 100vw;
+    margin: 0 auto;
     }
 }
