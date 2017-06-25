@@ -9,9 +9,11 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactDOMServer = require('react-dom/server')
 var app = express()
+var mongoose = require('mongoose')
+var cors = require('cors')
+var PORT = process.env.PORT || 3001
 var MongoClient = require('mongodb').MongoClient
-require('../client/components/header.js')
-require('../client/components/content.js')
+
 
 // Set view engine //
 app.set('view engine', 'html')
@@ -19,30 +21,15 @@ app.engine('html', function (path, options, callbacks){
   fs.readFile(path, 'utf-8', callback)
 })
 
-
-
-
 // Middleware //
 app.use(express.static(path.join(__dirname, '../client')))
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(cors())
 
-// Process results of form submission
-// app.post('/', function(req,res){
-
-//   var search = req.body.search
-//   var numberOfResults = req.body.numberOfResults
-//   console.log(search, numberOfResults)
-//   MongoClient.connect("mongodb://admin:12345@ds119380.mlab.com:19380/imagesearch", function(err, db) {
-//   if(!err) {
-//     console.log("We are connected");
-//   }
-//   })
-//   // var root = res.render('../client/index', function(err, html){
-//   //   res.send(html)
-//   //})
-//   var markup = React.renderToString(Content())
-//   res.render( '/',{markup: markup})
-// })
+// Routes //
+var routes = require('../api/routes/routes')
+routes(app)
 
 // Error handler //
 app.use(function (err, req, res, next){
@@ -50,7 +37,6 @@ app.use(function (err, req, res, next){
 })
 
 // hey... listen! //
-var PORT = 3001
 app.listen(PORT, function() {
 	console.log('http://localhost:' + PORT)
 })

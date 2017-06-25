@@ -32,7 +32,7 @@ export class Content extends React.Component {
     //e.preventDefault()
     //Axios request for search results //
     if(this.state.searchTerm != null){
-      var searchUrl = 'http://localhost:3002/api/search/' + this.state.searchTerm + '?offset=' + parseInt(this.state.searchPage)
+      var searchUrl = 'http://localhost:3001/api/search/' + this.state.searchTerm + '?offset=' + parseInt(this.state.searchPage)
       axios.get(searchUrl)
       .then(res => {
        // console.log(res)
@@ -56,7 +56,7 @@ export class Content extends React.Component {
   showRecent (e) {
     e.preventDefault()
     // Axios request to update state //
-    axios.get('http://localhost:3002/api/recent')
+    axios.get('http://localhost:3001/api/recent')
     .then(res =>{
       console.log(res)
       this.setState({

@@ -18440,7 +18440,7 @@ var Content = exports.Content = function (_React$Component) {
       //e.preventDefault()
       //Axios request for search results //
       if (this.state.searchTerm != null) {
-        var searchUrl = 'http://localhost:3002/api/search/' + this.state.searchTerm + '?offset=' + parseInt(this.state.searchPage);
+        var searchUrl = 'http://localhost:3001/api/search/' + this.state.searchTerm + '?offset=' + parseInt(this.state.searchPage);
         axios.get(searchUrl).then(function (res) {
           // console.log(res)
           _this2.setState({
@@ -18467,7 +18467,7 @@ var Content = exports.Content = function (_React$Component) {
 
       e.preventDefault
       // Axios request to update state //
-      ();axios.get('http://localhost:3002/api/recent').then(function (res) {
+      ();axios.get('http://localhost:3001/api/recent').then(function (res) {
         console.log(res);
         _this3.setState({
           recent: res,
@@ -19581,11 +19581,10 @@ var FormInstance = exports.FormInstance = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'form' },
         _react2.default.createElement(
           _reactBootstrap.Form,
           null,
-          ' ',
           _react2.default.createElement(_reactBootstrap.FormControl, {
             className: 'searchTerm',
             placeholder: 'new search',
@@ -19663,7 +19662,7 @@ var Instructions = exports.Instructions = function (_React$Component) {
         _react2.default.createElement(
           "h1",
           null,
-          "These are search instructions"
+          "API Instructions"
         ),
         _react2.default.createElement(
           "div",
@@ -19671,7 +19670,32 @@ var Instructions = exports.Instructions = function (_React$Component) {
           _react2.default.createElement(
             "p",
             null,
-            "this is some text"
+            "In order to perform a search, add your search term and desired page number to the URL in the manner shown below."
+          ),
+          _react2.default.createElement(
+            "h2",
+            null,
+            "Example:"
+          ),
+          _react2.default.createElement(
+            "p",
+            null,
+            "https://img-data.herokuapp.com/api/search/google?offset=2"
+          ),
+          _react2.default.createElement(
+            "p",
+            null,
+            "In order to view recent searches, add /api/recent to the root URL"
+          ),
+          _react2.default.createElement(
+            "h2",
+            null,
+            "Example:"
+          ),
+          _react2.default.createElement(
+            "p",
+            null,
+            "https://img-data.herokuapp.com/api/recent"
           )
         )
       );
@@ -19723,7 +19747,7 @@ var NavbarInstance = exports.NavbarInstance = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _reactBootstrap.Navbar,
-        null,
+        { className: 'navbar' },
         _react2.default.createElement(
           _reactBootstrap.Navbar.Header,
           null,
@@ -19972,7 +19996,7 @@ var App = function (_React$Component) {
                 { className: 'container' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    null,
                     _react2.default.createElement(
                         'div',
                         null,
@@ -19981,7 +20005,7 @@ var App = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    null,
                     _react2.default.createElement(
                         'div',
                         null,
@@ -19990,7 +20014,7 @@ var App = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    null,
                     _react2.default.createElement(
                         'div',
                         null,
